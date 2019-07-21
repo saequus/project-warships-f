@@ -1,0 +1,83 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Warships</title>
+    <style>
+      .board {
+       width: 520px;
+        height: 520px;
+        margin: 20px;
+        border: 10px solid #333;
+      }
+      .cell {
+        float: left;
+        width: 50px;
+        height: 50px;
+        border: 1px solid white;
+        font-size: 20px;
+        text-align: center;
+        display: table-cell;
+      }
+      .bombed_cell {
+        background-color: palevioletred;
+      }
+      .ship_cell {
+        background-color: #93badb;
+      }
+    </style>
+
+  </head>
+  <body>
+    <script>
+      $('#myButton').on('click', function () {
+        console.log('wow')
+      })
+    </script>
+    <h1 class="text-center mt-4">Warships</h1>
+    <div class="row pl-5">
+      <div class="col-md-6">
+        <h4 class="text-center">Your board</h4>
+        <div class="board">
+          {% for cell in context.board %}
+            <button
+              type="button" id="cell_index"
+              class='btn btn-light cell
+              {% if cell.status == "bombed" %} bombed_cell {% endif %}
+              {% if cell.status == "ship" %} ship_cell {% endif %}'
+            >
+              {{ cell.id }}
+            </button>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="col-md-6">
+        <h4 class="text-center">Opponent's board</h4>
+        <div class="board">
+          {% for cell in context.opponents_board %}
+            <button
+              type="button" id="other_cell_index"
+              class='btn btn-light cell
+              {% if cell.status == "bombed" %} bombed_cell {% endif %}
+              {% if cell.status == "ship" %} ship_cell {% endif %}'
+            >
+              {{ cell.id }}
+            </button>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    <div class="row pl-5">
+      <div class="col-md-6">
+<!--        <form method="POST">-->
+<!--          <p>Start game</p>-->
+<!--          <input type="submit" name="submit" value="Start game">-->
+<!--        </form>-->
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
